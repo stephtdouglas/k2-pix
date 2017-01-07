@@ -16,8 +16,8 @@ def getSVImg(SC_ObjPos, SkyViewSurvey):
 	"""
 	img_survey, pix_survey, hdr_survey = None, None, None
 	try:
-		img_survey = SkyView.get_images(position=SC_ObjPos, survey=[SkyViewSurvey], 
-						coordinates="J2000", pixels=500)
+		img_survey = SkyView.get_images(position=SC_ObjPos, survey=[SkyViewSurvey],
+						coordinates="J2000", pixels=30)
 		if len(img_survey) > 0:
 			pix_survey = img_survey[0][0].data
 			hdr_survey = img_survey[0][0].header
@@ -32,5 +32,3 @@ if __name__ == "__main__":
 	pixels, header = getSVImg(ObjPos, Survey)
 	plt.imshow(pixels)
 	plt.show()
-
-

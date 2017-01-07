@@ -26,6 +26,8 @@ from astropy.io import fits
 from astropy import log
 from astropy import visualization
 from astropy.wcs import WCS
+import astropy.units as u
+from astropy import coordinates as coords
 
 ###
 # Kepler constants
@@ -138,6 +140,10 @@ class TargetPixelFile(object):
     @property
     def wcs(self):
         return k2_ConvertHeaderWCS(self.header)
+
+    @property
+    def position(self):
+        return coords.SkyCoord(self.ra,self.dec,unit=u.deg,frame="icrs")
 
     @property
     def flux(self):

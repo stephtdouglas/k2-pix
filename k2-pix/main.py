@@ -79,4 +79,4 @@ if __name__ == '__main__':
     tpf = TargetPixelFile(fn)
     fig = K2Fig(tpf)
     # Then run with all default arguments to generate image
-    fig.create_figure("overplot.png")
+    fig.create_figure("overplot.png","2MASS-K")

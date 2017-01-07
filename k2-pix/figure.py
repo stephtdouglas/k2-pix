@@ -18,12 +18,6 @@ from astropy.wcs import WCS
 
 import surveyquery
 
-# font = {'family' : 'normal',
-# 'weight' : 'bold',
-# 'size'   : 22}
-#
-# matplotlib.rc('font', **font)
-
 # Figure class
 class K2Fig(object):
     """Figure showing K2 target pixel stamp and sky survey image."""
@@ -55,8 +49,8 @@ class K2Fig(object):
 
 
     # Set up the figure and axes using astropy WCS
-    def create_figure(self, output_filename, stretch='log', vmin=1, vmax=None,
-                      cmap='gray', data_col='FLUX'):
+    def create_figure(self, output_filename, survey, stretch='log', vmin=1, vmax=None, min_percent=1, max_percent=95,
+                      cmap='gray', contour_color='red', data_col='FLUX'):
         """Returns a matplotlib Figure object that visualizes a frame.
 
         Parameters
@@ -89,7 +83,7 @@ class K2Fig(object):
 
         # calculate cut_levels
         if vmax is None:
-            vmin, vmax = self.cut_levels()
+            vmin, vmax = self.cut_levels(min_percent,max_percent,data_col)
 
         # Determine the figsize
         shape = list(flx.shape)
@@ -130,15 +124,14 @@ class K2Fig(object):
         current_ylims = ax.get_ylim()
         current_xlims = ax.get_xlim()
 
-        Survey = '2MASS-K'
-        pixels, header = surveyquery.getSVImg(self.TPF.position, Survey)
+        pixels, header = surveyquery.getSVImg(self.TPF.position, survey)
         levels = np.linspace(np.min(pixels),np.percentile(pixels,95),10)
         ax.contour(pixels,transform=ax.get_transform(WCS(header)),
-                    levels=levels,color="r")
+                    levels=levels,color=contour_color)
 
         ax.set_xlim(current_xlims)
         ax.set_ylim(current_ylims)
 
         fig.canvas.draw()
-        plt.savefig(output_filename)
+        plt.savefig(output_filename, bbox_inches='tight', dpi=300)
         return fig

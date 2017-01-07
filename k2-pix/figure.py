@@ -83,7 +83,7 @@ class K2Fig(object):
 
         # calculate cut_levels
         if vmax is None:
-            vmin, vmax = self.cut_levels()
+            vmin, vmax = self.cut_levels(min_percent,max_percent,data_col)
 
         # Determine the figsize
         shape = list(flx.shape)

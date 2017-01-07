@@ -3,7 +3,6 @@
 from __future__ import division, print_function, absolute_import
 
 import argparse
-import matplotlib.pyplot as plt
 
 from tpf import TargetPixelFile
 from figure import K2Fig
@@ -74,5 +73,4 @@ if __name__ == '__main__':
     tpf = TargetPixelFile(fn)
     fig = K2Fig(tpf)
     # Then run with all default arguments to generate image
-    fig.create_figure()
-    plt.show()
+    fig.create_figure("overplot.png")

@@ -15,13 +15,6 @@ import numpy as np
 from tqdm import tqdm
 import warnings
 
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as pl
-from matplotlib.image import imsave
-import matplotlib.patheffects as path_effects
-from matplotlib.colors import NoNorm
-
 from astropy.io import fits
 from astropy import log
 from astropy import visualization

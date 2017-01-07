@@ -30,7 +30,7 @@ class K2Fig(object):
 
     def __init__(self,TPF):
         self.TPF = TPF
-        self.verbose=True
+        self.verbose = self.TPF.verbose
 
     def cut_levels(self, min_percent=1., max_percent=95., data_col='FLUX'):
             """Determine the cut levels for contrast stretching.
@@ -55,7 +55,7 @@ class K2Fig(object):
 
 
     # Set up the figure and axes using astropy WCS
-    def create_figure(self, stretch='log', vmin=1, vmax=None,
+    def create_figure(self, output_filename, stretch='log', vmin=1, vmax=None,
                       cmap='gray', data_col='FLUX'):
         """Returns a matplotlib Figure object that visualizes a frame.
 
@@ -129,11 +129,8 @@ class K2Fig(object):
 
         current_ylims = ax.get_ylim()
         current_xlims = ax.get_xlim()
-        print(current_ylims)
-        print(current_xlims)
-        print(self.TPF.position)
 
-        Survey = 'DSS'
+        Survey = '2MASS-K'
         pixels, header = surveyquery.getSVImg(self.TPF.position, Survey)
         levels = np.linspace(np.min(pixels),np.percentile(pixels,95),10)
         ax.contour(pixels,transform=ax.get_transform(WCS(header)),
@@ -143,4 +140,5 @@ class K2Fig(object):
         ax.set_ylim(current_ylims)
 
         fig.canvas.draw()
+        plt.savefig(output_filename)
         return fig

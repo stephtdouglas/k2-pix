@@ -1,19 +1,11 @@
 import numpy as np
 import scipy as sp
 import astroquery
-from astropy import coordinates as coords
 from astropy.io import fits
 from astropy.wcs import WCS
 from astroquery.skyview import SkyView
 import matplotlib.pyplot as plt
 import urllib2 as urllib
-
-
-# Function to Get RA & Dec for the Object
-#def k2_getRADec(tpf_file):
-#	table, times, pixels, maskmap, maskheader, kpmag = tpf_io.get_data(tpf_file)
-#	SC_ObjPos = coords.SkyCoord(maskheader["RA_OBJ"], maskheader["DEC_OBJ"], unit=u.deg)
-#	return SC_ObjPos
 
 # Function to Get a Survey Image Provided the Object Position & Survey Name
 # May need a downgrade of HTML5Lib: pip install --upgrade html5lib==1.0b8

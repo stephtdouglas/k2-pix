@@ -6,6 +6,7 @@ import argparse
 import matplotlib.pyplot as plt
 
 from tpf import TargetPixelFile
+from figure import K2Fig
 
 def k2pix():
     """ Script to plot a K2 TPF and overlay a sky survey image."""
@@ -71,6 +72,7 @@ if __name__ == '__main__':
     fn = ("https://archive.stsci.edu/missions/k2/target_pixel_files/c5/"
           "211900000/72000/ktwo211972478-c05_lpd-targ.fits.gz")
     tpf = TargetPixelFile(fn)
+    fig = K2Fig(tpf)
     # Then run with all default arguments to generate image
-    tpf.create_figure()
+    fig.create_figure()
     plt.show()

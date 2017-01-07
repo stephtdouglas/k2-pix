@@ -23,7 +23,6 @@ import matplotlib.patheffects as path_effects
 from matplotlib.colors import NoNorm
 
 from astropy.io import fits
-from astropy.time import Time
 from astropy import log
 from astropy import visualization
 from astropy.wcs import WCS
@@ -171,95 +170,3 @@ class TargetPixelFile(object):
             if quality & int(flag) > 0:
                 flags.append(KEPLER_QUALITY_FLAGS[flag])
         return flags
-
-
-    def cut_levels(self, min_percent=1., max_percent=95., data_col='FLUX'):
-        """Determine the cut levels for contrast stretching.
-
-        Returns
-        -------
-        vmin, vmax : float, float
-            Min and max cut levels.
-        """
-
-        # Get co-added flux
-        sample = self.flux_binned()
-
-        # Scale image
-        with warnings.catch_warnings():
-            warnings.filterwarnings('ignore', message="(.*)invalid value(.*)")
-            vmin, vmax = np.percentile(sample[sample > 0],
-                                       [min_percent, max_percent])
-        return vmin, vmax
-
-    def create_figure(self, stretch='log', vmin=1, vmax=None,
-                      cmap='gray', data_col='FLUX'):
-        """Returns a matplotlib Figure object that visualizes a frame.
-
-        Parameters
-        ----------
-        frameno : int
-            Image number in the target pixel file.
-
-        vmin : float, optional
-            Minimum cut level (default: 0).
-
-        vmax : float, optional
-            Maximum cut level (default: 5000).
-
-        cmap : str, optional
-            The matplotlib color map name.  The default is 'gray',
-            can also be e.g. 'gist_heat'.
-
-        raw : boolean, optional
-            If `True`, show the raw pixel counts rather than
-            the calibrated flux. Default: `False`.
-
-        Returns
-        -------
-        image : array
-            An array of unisgned integers of shape (x, y, 3),
-            representing an RBG colour image x px wide and y px high.
-        """
-        # Get the flux data to visualize
-        flx = self.flux_binned()
-        # print(np.shape(flx))
-
-        # calculate cut_levels
-        if vmax is None:
-            vmin, vmax = self.cut_levels()
-
-        # Determine the figsize
-        shape = list(flx.shape)
-        # print(shape)
-        # Create the figureand display the flux image using matshow
-        fig = pl.figure(figsize=shape)
-        # Display the image using matshow
-        ax = fig.add_subplot(1, 1, 1)
-        if self.verbose:
-            print('{} vmin/vmax = {}/{} (median={})'.format(data_col, vmin, vmax, np.nanmedian(flx)))
-
-        if stretch == 'linear':
-            stretch_fn = visualization.LinearStretch()
-        elif stretch == 'sqrt':
-            stretch_fn = visualization.SqrtStretch()
-        elif stretch == 'power':
-            stretch_fn = visualization.PowerStretch(1.0)
-        elif stretch == 'log':
-            stretch_fn = visualization.LogStretch()
-        elif stretch == 'asinh':
-            stretch_fn = visualization.AsinhStretch(0.1)
-        else:
-            raise ValueError('Unknown stretch: {0}.'.format(stretch))
-
-        transform = (stretch_fn +
-                     visualization.ManualInterval(vmin=vmin, vmax=vmax))
-        ax.imshow((255*transform(flx)).astype(int), aspect='auto',
-                   origin='lower', interpolation='nearest',
-                   cmap=cmap, norm=NoNorm())
-        ax.set_xticks([])
-        ax.set_yticks([])
-        ax.axis('off')
-        fig.subplots_adjust(left=0.0, right=1.0, top=1.0, bottom=0.0)
-        fig.canvas.draw()
-        return fig

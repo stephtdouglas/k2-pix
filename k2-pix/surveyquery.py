@@ -31,14 +31,11 @@ def k2_ConvertHeaderWCS(tpf_file):
 		mywcs[newkey] = f[1].header[oldkey] 
 	return WCS(mywcs).wcs_pix2world(1, 1, 1)
 
-# Function to Open K2 FITS & Remove Header
+# Function to Get RA & Dec for the Object
 def k2_getRADec(tpf_file):
 	table, times, pixels, maskmap, maskheader, kpmag = tpf_io.get_data(tpf_file)
 	SC_pos = coords.SkyCoord(maskheader["RA_OBJ"], maskheader["DEC_OBJ"], unit=u.deg)
 	return SC_pos
-
-# Function to Return Max and Min of RA & Dec
-
 
 # Get 2Mass K-Band Image
     twomass_images, pix_2mass, hdr_2mass = None, None, None

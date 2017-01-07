@@ -66,6 +66,7 @@ def k2pix():
 
 # Example use
 if __name__ == '__main__':
+
     # fn = ('http://archive.stsci.edu/missions/kepler/target_pixel_files/'
     #       '0007/000757076/kplr000757076-2010174085026_lpd-targ.fits.gz')
     fn = ("https://archive.stsci.edu/missions/k2/target_pixel_files/c5/"

@@ -34,12 +34,11 @@ def getSVImg(SC_ObjPos, SkyViewSurvey):
 	return pix_survey, hdr_survey
 
 if __name__ == "__main__":
+	# Demo to Showcase that the SkyView image is working.
 	Survey = 'DSS'
 	ObjPos = 'Dumbbell Nebula'
 	pixels, header = getSVImg(ObjPos, Survey)
-	#plt.imshow(pixels)
-	
-	print type(pixels)
+	plt.imshow(pixels)
 	plt.show()
 
 

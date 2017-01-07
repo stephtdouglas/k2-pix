@@ -83,7 +83,7 @@ def k2_ConvertHeaderWCS(tpf_header):
     for oldkey, newkey in funny_keywords.iteritems():
         mywcs[newkey] = tpf_header[oldkey]
 
-    return WCS(mywcs).wcs_pix2world(1, 1, 1)
+    return WCS(mywcs)
 
 ###
 # Helper classes

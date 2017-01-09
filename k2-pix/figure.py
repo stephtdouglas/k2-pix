@@ -127,7 +127,7 @@ class K2Fig(object):
         pixels, header = surveyquery.getSVImg(self.TPF.position, survey)
         levels = np.linspace(np.min(pixels),np.percentile(pixels,95),10)
         ax.contour(pixels,transform=ax.get_transform(WCS(header)),
-                    levels=levels,color=contour_color)
+                    levels=levels,colors=contour_color)
 
         ax.set_xlim(current_xlims)
         ax.set_ylim(current_ylims)

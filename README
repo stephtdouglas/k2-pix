@@ -1,7 +1,16 @@
 K2-Pix
-
-Developed at AAS229 by Stephanie Douglas, Joseph Glaser, Erin Maier, & Geert Barentsen
+--
 
 This command-line code allows for overlaying a Sky View survey image's contours onto a K2 pixel stamp.
 
-Please add any comments and suggestions to the Issue's area.
+Developed at AAS229 by:
+- Stephanie Douglas
+- Joseph Glaser
+- Erin Maier
+- Geert Barentsen
+
+... and recently extended by:
+- Michael Gully-Santiago
+- JJ Hermes
+
+Please add any comments and suggestions to the GitHub Issues.

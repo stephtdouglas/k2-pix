@@ -1,5 +1,4 @@
 import numpy as np
-import scipy as sp
 import astroquery
 from astropy.io import fits
 from astropy.wcs import WCS

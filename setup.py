@@ -19,7 +19,7 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README'), encoding='utf-8') as f:
     long_description = f.read()
 
-entry_points = {'console_scripts': ['k2pix = k2pix.main.k2pix']}
+entry_points = {'console_scripts': ['k2pix = main:k2pix']}
 
 setup(
     name='k2-pix',
@@ -28,7 +28,7 @@ setup(
     description="Overlaying a Sky View survey image's contours onto a K2 pixel stamp",
     long_description=long_description,
     url='https://github.com/gully/k2-pix',
-    author=('Stephanie Douglas and GitHub contributors')
+    author='Stephanie Douglas and GitHub contributors',
     author_email='',
     license='MIT',
     entry_points=entry_points,
@@ -41,5 +41,5 @@ setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'pytest-cov'],
     keywords='astronomy astrophysics',
-    install_requires=['pyketools, astroquery, numpy, matplotlib, tqdm, astropy']
+    install_requires=['pyketools', 'astroquery', 'numpy', 'matplotlib', 'tqdm', 'astropy']
 )

@@ -16,7 +16,7 @@ from astropy import log
 from astropy import visualization
 from astropy.wcs import WCS
 
-import surveyquery
+from .surveyquery import getSVImg
 
 # Figure class
 class K2Fig(object):
@@ -124,7 +124,7 @@ class K2Fig(object):
         current_ylims = ax.get_ylim()
         current_xlims = ax.get_xlim()
 
-        pixels, header = surveyquery.getSVImg(self.TPF.position, survey)
+        pixels, header = getSVImg(self.TPF.position, survey)
         levels = np.linspace(np.min(pixels),np.percentile(pixels,95),10)
         ax.contour(pixels,transform=ax.get_transform(WCS(header)),
                     levels=levels,colors=contour_color)

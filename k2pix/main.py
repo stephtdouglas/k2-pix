@@ -4,8 +4,8 @@ from __future__ import division, print_function, absolute_import
 
 import argparse
 
-from tpf import TargetPixelFile
-from figure import K2Fig
+from .tpf import TargetPixelFile
+from .figure import K2Fig
 
 def k2pix():
     """ Script to plot a K2 TPF and overlay a sky survey image."""

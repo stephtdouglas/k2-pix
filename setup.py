@@ -10,7 +10,7 @@ from os import path
 if "release" in sys.argv[-1]:
     os.system("python setup.py sdist")
     os.system("twine upload dist/*")
-    os.system("rm -rf dist/k2-pix*")
+    os.system("rm -rf dist/k2pix*")
     sys.exit()
 
 here = path.abspath(path.dirname(__file__))
@@ -19,11 +19,11 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README'), encoding='utf-8') as f:
     long_description = f.read()
 
-entry_points = {'console_scripts': ['k2pix = main:k2pix']}
+entry_points = {'console_scripts': ['k2pix = k2pix.main:k2pix']}
 
 setup(
-    name='k2-pix',
-    packages=['k2-pix'],
+    name='k2pix',
+    packages=['k2pix'],
     version='0.1',
     description="Overlaying a Sky View survey image's contours onto a K2 pixel stamp",
     long_description=long_description,

@@ -50,9 +50,12 @@ def k2pix():
 
     for fn in args.tpf_filename:
         try:
+            out_name = args.output
+            if args.output is None:
+                out_name = fn + '_overplot.png'
             tpf = TargetPixelFile(fn, verbose=args.verbose)
             fig = K2Fig(tpf)
-            fig.create_figure(output_filename=args.output,
+            fig.create_figure(output_filename=out_name,
                               survey=args.survey,
                               stretch=args.stretch,
                               min_percent=args.min_percent,

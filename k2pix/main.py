@@ -36,7 +36,7 @@ def k2pix():
     parser.add_argument('tpf_filename', nargs='+',
                         help='path to one or more Target Pixel Files (TPF)')
 
-    args = parser.parse_args(args)
+    args = parser.parse_args()
 
     # # What is the data column to show?
     # if args.raw:
@@ -53,6 +53,7 @@ def k2pix():
             tpf = TargetPixelFile(fn, verbose=args.verbose)
             fig = K2Fig(tpf)
             fig.create_figure(output_filename=args.output,
+                              survey=args.survey,
                               stretch=args.stretch,
                               min_percent=args.min_percent,
                               max_percent=args.max_percent,

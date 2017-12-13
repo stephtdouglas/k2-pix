@@ -20,7 +20,7 @@ def getSVImg(SC_ObjPos, SkyViewSurvey):
         if len(img_survey) > 0:
             pix_survey = img_survey[0][0].data
             hdr_survey = img_survey[0][0].header
-    except (astroquery.exceptions.TimeoutError, urllib.HTTPError):
+    except (astroquery.exceptions.TimeoutError, urllib.error.HTTPError):
         pix_survey, hdr_survey = None, None
     return pix_survey, hdr_survey
 

@@ -6,6 +6,9 @@ def test_imports():
     from ..main import k2pix
     from ..tpf import TargetPixelFile
     from ..figure import K2Fig
+    
+    # add a test to make Travis run
+    import astropy
 
 
 def test_main_function():

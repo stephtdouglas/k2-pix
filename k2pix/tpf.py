@@ -74,7 +74,7 @@ def k2_ConvertHeaderWCS(tpf_header):
                       '21PC4': 'PC2_1',
                       '22PC4': 'PC2_2'}
     mywcs = {}
-    for oldkey, newkey in funny_keywords.iteritems():
+    for oldkey, newkey in funny_keywords.items():
         mywcs[newkey] = tpf_header[oldkey]
 
     return WCS(mywcs)
@@ -114,9 +114,9 @@ class TargetPixelFile(object):
         self.header = self.hdulist[1].header
         self.no_frames = len(self.hdulist[1].data['FLUX'])
         self.verbose = verbose
-	if not self.verbose:
-		import warnings
-		warnings.filterwarnings("ignore")
+        if not self.verbose:
+            import warnings
+            warnings.filterwarnings("ignore")
 
     @property
     def objectname(self):

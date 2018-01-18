@@ -4,8 +4,8 @@ from __future__ import division, print_function, absolute_import
 
 import argparse
 
-from tpf import TargetPixelFile
-from figure import K2Fig
+from .tpf import TargetPixelFile
+from .figure import K2Fig
 
 def k2pix():
     """ Script to plot a K2 TPF and overlay a sky survey image."""
@@ -36,7 +36,7 @@ def k2pix():
     parser.add_argument('tpf_filename', nargs='+',
                         help='path to one or more Target Pixel Files (TPF)')
 
-    args = parser.parse_args(args)
+    args = parser.parse_args()
 
     # # What is the data column to show?
     # if args.raw:
@@ -50,9 +50,13 @@ def k2pix():
 
     for fn in args.tpf_filename:
         try:
+            out_name = args.output
+            if args.output is None:
+                out_name = fn + '_overplot.png'
             tpf = TargetPixelFile(fn, verbose=args.verbose)
             fig = K2Fig(tpf)
-            fig.create_figure(output_filename=args.output,
+            fig.create_figure(output_filename=out_name,
+                              survey=args.survey,
                               stretch=args.stretch,
                               min_percent=args.min_percent,
                               max_percent=args.max_percent,

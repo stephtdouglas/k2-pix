@@ -1,7 +1,0 @@
-numpy
-matplotlib
-astropy
-imageio
-tqdm
-pyketools
-astroquery

@@ -16,7 +16,7 @@ if "release" in sys.argv[-1]:
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README'), encoding='utf-8') as f:
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 entry_points = {'console_scripts': ['k2pix = k2pix.main:k2pix']}

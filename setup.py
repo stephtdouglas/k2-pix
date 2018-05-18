@@ -41,5 +41,5 @@ setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'pytest-cov'],
     keywords='astronomy astrophysics',
-    install_requires=['pyketools', 'astroquery', 'numpy', 'matplotlib', 'tqdm', 'astropy']
+    install_requires=['astroquery', 'numpy', 'matplotlib', 'tqdm', 'astropy', 'imageio']
 )
